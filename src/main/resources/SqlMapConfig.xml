@@ -9,8 +9,8 @@
         <environment id="mysql">
             <transactionManager type="JDBC"></transactionManager>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://host:3306/database"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://10.100.22.14:3306/db"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
             </dataSource>
@@ -18,15 +18,15 @@
     </environments>
     <!--指定映射文件-->
     <!--名称也可以取为UserMapper.xml-->
-    <!--
+
     <mappers>
         <mapper resource="com/myitem/dao/UserDao.xml"></mapper>
     </mappers>
-        -->
+
     <!--使用注解-->
-    <mappers>
-        <mapper class="com.myitem.dao.UserDao"></mapper>
-    </mappers>
+<!--    <mappers>-->
+<!--        <mapper class="com.myitem.dao.UserDao"></mapper>-->
+<!--    </mappers>-->
 
 
 

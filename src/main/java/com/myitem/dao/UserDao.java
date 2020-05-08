@@ -10,6 +10,6 @@ public interface UserDao {
      * 查询所有用户信息
      * @return
      */
-    @Select("select * from user")
+//    @Select("select * from user")
     List<User> findAll();
 }
