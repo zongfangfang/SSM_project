@@ -4,22 +4,84 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 public class MybatisTest {
-    public static void main(String[] args) throws Exception{
-        InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
-        SqlSessionFactoryBuilder builder=new SqlSessionFactoryBuilder();
-        SqlSessionFactory factory=builder.build(in);
-        SqlSession session = factory.openSession();
-        UserDao userDao=session.getMapper(UserDao.class);
+    private InputStream in;
+    private SqlSessionFactoryBuilder builder;
+    private SqlSessionFactory factory;
+    private SqlSession session;
+    private UserDao userDao;
+
+    @Before
+    public void init() throws Exception{
+        in = Resources.getResourceAsStream("SqlMapConfig.xml");
+        builder=new SqlSessionFactoryBuilder();
+        factory=builder.build(in);
+        session = factory.openSession();
+        userDao=session.getMapper(UserDao.class);
+    }
+
+    @After
+    public void close() throws Exception{
+        session.close();
+        in.close();
+    }
+    @Test
+    public void testFindAll(){
         List<User> userList= userDao.findAll();
         for(User user:userList){
             System.out.println(user);
         }
-        session.close();
-        in.close();
+
     }
+
+    @Test
+    public void saveUser(){
+        User user=new User();
+        user.setUsername("娃哈哈");
+        user.setAddress("中国北京");
+        user.setSex("男");
+        user.setBirthday(new Date());
+        userDao.saveUser(user);
+    }
+    @Test
+    public void deleteUser(){
+        userDao.deleteUser(50);
+    }
+
+    @Test
+    public void updateUser(){
+        User user=new User();
+        user.setUsername("娃哈哈");
+        user.setAddress("中国北京");
+        user.setSex("男");
+        user.setBirthday(new Date());
+        user.setId(49);
+        userDao.updateUser(user);
+    }
+
+    @Test
+    public void testFindById(){
+        User user= userDao.findUserById(48);
+        System.out.println(user);
+
+    }
+
+    @Test
+    public void testFindByName(){
+        List<User> users= userDao.findUserByName("%王%");
+        for(User user:users){
+            System.out.println(user);
+        }
+
+
+    }
+
 }
