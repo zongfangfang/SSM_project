@@ -30,6 +30,7 @@ public class MybatisTest {
 
     @After
     public void close() throws Exception{
+        session.commit();
         session.close();
         in.close();
     }
@@ -50,11 +51,11 @@ public class MybatisTest {
         user.setSex("男");
         user.setBirthday(new Date());
         userDao.saveUser(user);
-        System.out.println(user);
+//        System.out.println(user);
     }
     @Test
     public void deleteUser(){
-        userDao.deleteUser(50);
+        userDao.deleteUser(57);
     }
 
     @Test
@@ -64,7 +65,7 @@ public class MybatisTest {
         user.setAddress("中国北京");
         user.setSex("男");
         user.setBirthday(new Date());
-        user.setId(49);
+        user.setId(48);
         userDao.updateUser(user);
     }
 
