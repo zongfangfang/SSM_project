@@ -50,6 +50,7 @@ public class MybatisTest {
         user.setSex("男");
         user.setBirthday(new Date());
         userDao.saveUser(user);
+        System.out.println(user);
     }
     @Test
     public void deleteUser(){
@@ -76,6 +77,7 @@ public class MybatisTest {
 
     @Test
     public void testFindByName(){
+//        userDao=session.getMapper(UserDao.class);
         List<User> users= userDao.findUserByName("%王%");
         for(User user:users){
             System.out.println(user);
