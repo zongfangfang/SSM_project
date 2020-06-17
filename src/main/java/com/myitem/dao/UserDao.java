@@ -45,5 +45,10 @@ public interface UserDao {
      */
     List<User> findUserByName(String name);
 
-
+    /**
+     * 根据条件查询User
+     * @param user
+     * @return
+     */
+    List<User> findUserByCondition(User user);
 }

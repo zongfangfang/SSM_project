@@ -3,18 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myitem.dao.UserDao">
-    <resultMap id="userMap" type="com.myitem.domain.User">
+    <!--user在SqlMapConfig.xml的typeAlias别名 -->
+    <resultMap id="userMap" type="user">
         <id property="id" column="id"></id>
         <result property="username" column="username"></result>
         <result property="address" column="address"></result>
         <result property="sex" column="sex"></result>
         <result property="birthday" column="birthday"></result>
     </resultMap>
+
+
     <!--配置sql:id为UserDao的方法名称-->
     <select id="findAll" resultMap="userMap">
         select * from user
     </select>
-    <insert id="saveUser" parameterType="com.myitem.domain.User">
+    <insert id="saveUser" parameterType="user">
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
@@ -26,7 +29,7 @@
         delete from user where id=#{id}
     </delete>
 
-    <update id="updateUser" parameterType="com.myitem.domain.User">
+    <update id="updateUser" parameterType="user">
         update user set username=#{username},address=#{address},sex=#{sex},birthday=#{birthday}
         where id=#{id}
     </update>
@@ -37,5 +40,18 @@
 
     <select id="findUserByName" parameterType="String" resultMap="userMap">
         select * from user where username like #{name}
+    </select>
+
+    <select id="findUserByCondition" parameterType="user" resultMap="userMap">
+        select * from user
+        <where>
+            <if test="username!=null">
+                username=#{username}
+            </if>
+
+            <if test="sex!=null">
+                and   sex=#{sex}
+            </if>
+        </where>
     </select>
 </mapper>
