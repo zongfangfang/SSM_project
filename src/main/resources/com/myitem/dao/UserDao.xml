@@ -11,7 +11,9 @@
         <result property="sex" column="sex"></result>
         <result property="birthday" column="birthday"></result>
     </resultMap>
-
+    <sql id="defalutUser">
+        select * from user
+    </sql>
 
     <!--配置sql:id为UserDao的方法名称-->
     <select id="findAll" resultMap="userMap">
@@ -52,6 +54,16 @@
             <if test="sex!=null">
                 and   sex=#{sex}
             </if>
+        </where>
+    </select>
+    <select id="findUserByids" resultMap="userMap" parameterType="queryvo">
+        <include refid="defalutUser"></include>
+        <where>
+        <if test="ids!=null and ids.size>0">
+            <foreach collection="ids" open="and id in (" close=")" item="id1" separator=",">
+                #{id1}
+            </foreach>
+        </if>
         </where>
     </select>
 </mapper>

@@ -1,4 +1,5 @@
 import com.myitem.dao.UserDao;
+import com.myitem.domain.QueryVo;
 import com.myitem.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,6 +95,20 @@ public class MybatisTest {
 //        userCon.setUsername("老王");
         userCon.setSex("女");
         List<User> users= userDao.findUserByCondition(userCon);
+        for(User user:users){
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void testFindByids(){
+        QueryVo vo=new QueryVo();
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(41);
+        ids.add(42);
+        ids.add(43);
+        vo.setIds(ids);
+        List<User> users= userDao.findUserByids(vo);
         for(User user:users){
             System.out.println(user);
         }

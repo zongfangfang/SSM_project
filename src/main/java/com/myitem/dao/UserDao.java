@@ -1,5 +1,6 @@
 package com.myitem.dao;
 
+import com.myitem.domain.QueryVo;
 import com.myitem.domain.User;
 import org.apache.ibatis.annotations.Select;
 
@@ -51,4 +52,11 @@ public interface UserDao {
      * @return
      */
     List<User> findUserByCondition(User user);
+
+    /**
+     * 根据ids查询User
+     * @param vo
+     * @return
+     */
+    List<User> findUserByids(QueryVo vo);
 }
