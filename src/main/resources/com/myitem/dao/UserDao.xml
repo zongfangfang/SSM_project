@@ -20,6 +20,7 @@
         select * from user
     </select>
     <insert id="saveUser" parameterType="user">
+<!-- keyColumn对应数据库的主键，keyProperty是对应pojo属性名-->
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
@@ -32,7 +33,14 @@
     </delete>
 
     <update id="updateUser" parameterType="user">
-        update user set username=#{username},address=#{address},sex=#{sex},birthday=#{birthday}
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="username!=null">username=#{username},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+
+        </trim>
         where id=#{id}
     </update>
 
