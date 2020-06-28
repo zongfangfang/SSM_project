@@ -1,4 +1,5 @@
 import com.myitem.dao.UserDao;
+import com.myitem.domain.Account;
 import com.myitem.domain.QueryVo;
 import com.myitem.domain.User;
 import org.apache.ibatis.io.Resources;
@@ -41,6 +42,10 @@ public class MybatisTest {
         List<User> userList= userDao.findAll();
         for(User user:userList){
             System.out.println(user);
+            List<Account> accounts=user.getAccountList();
+            for(Account account:accounts){
+                System.out.println(account);
+            }
         }
 
     }

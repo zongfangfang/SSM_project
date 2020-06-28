@@ -2,13 +2,24 @@ package com.myitem.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class User implements Serializable {
     private Integer id;
     private String username;
     private Date birthday;
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
+    }
+
     private String sex;
     private String address;
+    private List<Account> accountList;
 
     public Integer getId() {
         return id;
