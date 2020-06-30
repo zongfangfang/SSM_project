@@ -27,7 +27,10 @@ public class MybatisTest {
         in = Resources.getResourceAsStream("SqlMapConfig.xml");
         builder=new SqlSessionFactoryBuilder();
         factory=builder.build(in);
-        session = factory.openSession();
+//        session = factory.openSession();
+        // 自动提交DML
+
+        session = factory.openSession(true);
         userDao=session.getMapper(UserDao.class);
     }
 
@@ -42,10 +45,8 @@ public class MybatisTest {
         List<User> userList= userDao.findAll();
         for(User user:userList){
             System.out.println(user);
-            List<Account> accounts=user.getAccountList();
-            for(Account account:accounts){
-                System.out.println(account);
-            }
+            System.out.println(user.getAccountList());
+
         }
 
     }

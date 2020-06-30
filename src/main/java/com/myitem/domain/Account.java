@@ -2,7 +2,7 @@ package com.myitem.domain;
 
 import java.io.Serializable;
 
-public class Account extends User implements Serializable {
+public class Account  implements Serializable {
     private Integer id;
     private Integer uid;
     private User user;
@@ -15,12 +15,12 @@ public class Account extends User implements Serializable {
         this.user = user;
     }
 
-    @Override
+
     public Integer getId() {
         return id;
     }
 
-    @Override
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -45,7 +45,7 @@ public class Account extends User implements Serializable {
 
     @Override
     public String toString() {
-        return user.toString()+"Account{" +
+        return user+" Account{" +
                 "id=" + id +
                 ", uid=" + uid +
                 ", money=" + money +

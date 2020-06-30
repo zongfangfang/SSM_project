@@ -6,12 +6,12 @@
     <properties resource="jdbc.properties">
 
     </properties>
-    <
+
     <!--只可以给domain下类起别名 -->
     <typeAliases>
         <package name="com.myitem.domain"/>
-        <typeAlias type="com.myitem.domain.User" alias="user"></typeAlias>
-        <typeAlias type="com.myitem.domain.QueryVo" alias="queryvo"></typeAlias>
+<!--        <typeAlias type="com.myitem.domain.User" alias="user"></typeAlias>-->
+<!--        <typeAlias type="com.myitem.domain.QueryVo" alias="queryvo"></typeAlias>-->
     </typeAliases>
     <!-- mybatis主配置配置环境-->
     <environments default="mysql">

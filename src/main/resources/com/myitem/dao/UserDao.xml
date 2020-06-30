@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--userDao.class的全路径 -->
 <mapper namespace="com.myitem.dao.UserDao">
     <resultMap id="userAccountMap" type="user">
         <id property="id" column="id"></id>
@@ -12,7 +13,7 @@
        <!-- user对象中的accountList,account是对象-->
         <collection property="accountList" ofType="account">
             <!--aid 为别名-->
-            <id property="aid" column="id"></id>
+            <id property="id" column="id"></id>
             <result property="uid" column="uid"></result>
             <result property="money" column="money"></result>
         </collection>
@@ -46,7 +47,7 @@
     <delete id="deleteUser" parameterType="int">
         delete from user where id=#{id}
     </delete>
-
+<!--trim标签一般用于去除sql语句中多余的and关键字,逗号,或者给sql语句拼接where、set等前缀-->
     <update id="updateUser" parameterType="user">
         update user
         <trim prefix="set" suffixOverrides=",">
@@ -54,7 +55,6 @@
             <if test="address!=null">address=#{address},</if>
             <if test="sex!=null">sex=#{sex},</if>
             <if test="birthday!=null">birthday=#{birthday},</if>
-
         </trim>
         where id=#{id}
     </update>

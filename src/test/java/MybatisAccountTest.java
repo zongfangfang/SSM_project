@@ -39,8 +39,8 @@ public class MybatisAccountTest {
         in.close();
     }
     @Test
-    public void testFindAll(){
-        List<Account> accounts= accountDao.findAccount();
+    public void testFindAllAccount(){
+        List<Account> accounts= accountDao.findAllAccount();
         for(Account account:accounts){
             System.out.println(account);
             System.out.println(account.getUser());
