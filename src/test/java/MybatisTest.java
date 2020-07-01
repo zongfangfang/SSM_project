@@ -2,6 +2,7 @@ import com.myitem.dao.UserDao;
 import com.myitem.domain.Account;
 import com.myitem.domain.QueryVo;
 import com.myitem.domain.User;
+import com.myitem.domain.UserAccount;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -42,10 +43,11 @@ public class MybatisTest {
     }
     @Test
     public void testFindAll(){
-        List<User> userList= userDao.findAll();
-        for(User user:userList){
+        List<UserAccount> userList= userDao.findAll();
+        for(UserAccount user:userList){
             System.out.println(user);
             System.out.println(user.getAccountList());
+
 
         }
 

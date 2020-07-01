@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--userDao.class的全路径 -->
 <mapper namespace="com.myitem.dao.UserDao">
-    <resultMap id="userAccountMap" type="user">
+    <resultMap id="userAccountMap" type="userAccount">
         <id property="id" column="id"></id>
         <result property="username" column="username"></result>
         <result property="address" column="address"></result>
@@ -13,7 +13,7 @@
        <!-- user对象中的accountList,account是对象-->
         <collection property="accountList" ofType="account">
             <!--aid 为别名-->
-            <id property="id" column="id"></id>
+            <id property="id" column="aid"></id>
             <result property="uid" column="uid"></result>
             <result property="money" column="money"></result>
         </collection>
@@ -33,7 +33,7 @@
 
     <!--配置sql:id为UserDao的方法名称-->
     <select id="findAll" resultMap="userAccountMap">
-        select * from user u left join account a on a.uid=u.id
+        SELECT u.*,a.id AS aid,a.MONEY,a.UID FROM user u LEFT JOIN account a ON a.uid=u.id
     </select>
     <insert id="saveUser" parameterType="user">
 <!-- keyColumn对应数据库的主键，keyProperty是对应pojo属性名-->

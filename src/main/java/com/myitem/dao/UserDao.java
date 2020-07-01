@@ -2,17 +2,18 @@ package com.myitem.dao;
 
 import com.myitem.domain.QueryVo;
 import com.myitem.domain.User;
+import com.myitem.domain.UserAccount;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 public interface UserDao {
     /**
-     * 查询所有用户信息
+     * 查询所有用户信息，并且查询一个用户下所有的账号
      * @return
      */
 //    @Select("select * from user")
-    List<User> findAll();
+    List<UserAccount> findAll();
 
     /**
      * 保存用户属性

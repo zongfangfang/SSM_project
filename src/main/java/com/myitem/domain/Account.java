@@ -45,7 +45,7 @@ public class Account  implements Serializable {
 
     @Override
     public String toString() {
-        return user+" Account{" +
+        return " Account{" +
                 "id=" + id +
                 ", uid=" + uid +
                 ", money=" + money +

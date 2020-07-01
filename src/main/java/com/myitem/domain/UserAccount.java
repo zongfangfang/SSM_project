@@ -1,11 +1,10 @@
 package com.myitem.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class User  implements Serializable {
+public class UserAccount implements Serializable {
     private Integer id;
     private String username;
     private Date birthday;
@@ -69,6 +68,6 @@ public class User  implements Serializable {
                 ", birthday=" + birthday +
                 ", sex='" + sex + '\'' +
                 ", address='" + address +'}'
-                ;
+                +accountList;
     }
 }

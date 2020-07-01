@@ -12,7 +12,7 @@
     </resultMap>
 
     <resultMap id="AccountUserMap" type="account">
-        <id property="id" column="id"></id>
+        <id property="id" column="aid"></id>
         <result property="uid" column="uid"></result>
         <result property="money" column="money"></result>
         <association property="user" column="uid" javaType="user">
@@ -34,7 +34,7 @@
     </select>
 
     <select id="findAllAccount" resultMap="AccountUserMap">
-        select a.*,u.username,u.address from account a,user u where
+        SELECT a.id AS aid,a.MONEY,a.UID,u.* FROM account a,user u WHERE
         a.uid=u.id;
     </select>
 

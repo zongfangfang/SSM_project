@@ -12,5 +12,9 @@ public interface AccountDao{
      */
     List<Account> findAccount();
 
+    /**
+     * 一个账号只属于一个用户
+     * @return
+     */
     List<Account> findAllAccount();
 }
