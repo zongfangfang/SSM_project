@@ -11,15 +11,7 @@ public class User  implements Serializable {
     private Date birthday;
     private String sex;
     private String address;
-    private List<Account> accountList ;
 
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
-    }
 
     public Integer getId() {
         return id;
