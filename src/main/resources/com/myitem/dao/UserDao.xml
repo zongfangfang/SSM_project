@@ -4,6 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--userDao.class的全路径 -->
 <mapper namespace="com.myitem.dao.UserDao">
+    <resultMap id="lazyUserAccountMap" type="userAccount">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <!-- user对象中的accountList,account是对象-->
+        <collection property="accountList" ofType="account" select="com.myitem.dao.AccountDao.findById" column="id">
+
+        </collection>
+    </resultMap>
     <resultMap id="userAccountMap" type="userAccount">
         <id property="id" column="id"></id>
         <result property="username" column="username"></result>
@@ -32,9 +43,9 @@
     </sql>
 
     <!--配置sql:id为UserDao的方法名称-->
-    <select id="findAll" resultMap="userAccountMap">
-        SELECT u.*,a.id AS aid,a.MONEY,a.UID FROM user u LEFT JOIN account a ON a.uid=u.id
-    </select>
+<!--    <select id="findAll" resultMap="userAccountMap">-->
+<!--        SELECT u.*,a.id AS aid,a.MONEY,a.UID FROM user u LEFT JOIN account a ON a.uid=u.id-->
+<!--    </select>-->
     <insert id="saveUser" parameterType="user">
 <!-- keyColumn对应数据库的主键，keyProperty是对应pojo属性名-->
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
@@ -88,5 +99,8 @@
             </foreach>
         </if>
         </where>
+    </select>
+    <select id="findAll" resultMap="lazyUserAccountMap">
+        <include refid="defalutUser"></include>
     </select>
 </mapper>

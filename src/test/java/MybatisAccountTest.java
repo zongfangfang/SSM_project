@@ -41,10 +41,10 @@ public class MybatisAccountTest {
     @Test
     public void testFindAllAccount(){
         List<Account> accounts= accountDao.findAllAccount();
-        for(Account account:accounts){
-            System.out.println(account);
-            System.out.println(account.getUser());
-        }
+//        for(Account account:accounts){
+//            System.out.println(account);
+//            System.out.println(account.getUser());
+//        }
 
     }
 

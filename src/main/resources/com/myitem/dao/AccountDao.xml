@@ -24,6 +24,16 @@
         </association>
 
     </resultMap>
+
+    <resultMap id="LazyAccountUserMap" type="account">
+        <id property="id" column="id"></id>
+        <result property="uid" column="uid"></result>
+        <result property="money" column="money"></result>
+        <association property="user" column="uid" javaType="user" select="com.myitem.dao.UserDao.findUserById">
+
+        </association>
+
+    </resultMap>
     <sql id="defalutAccount">
         select * from account
     </sql>
@@ -33,9 +43,14 @@
         <include refid="defalutAccount"></include>
     </select>
 
-    <select id="findAllAccount" resultMap="AccountUserMap">
-        SELECT a.id AS aid,a.MONEY,a.UID,u.* FROM account a,user u WHERE
-        a.uid=u.id;
+    <select id="findAllAccount" resultMap="LazyAccountUserMap">
+--         SELECT a.id AS aid,a.MONEY,a.UID,u.* FROM account a,user u WHERE
+--         a.uid=u.id;
+            select * from account
+    </select>
+
+    <select id="findById" resultType="account">
+        select * from account where uid=#{uid}
     </select>
 
 </mapper>

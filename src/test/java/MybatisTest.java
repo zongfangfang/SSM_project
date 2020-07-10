@@ -44,12 +44,11 @@ public class MybatisTest {
     @Test
     public void testFindAll(){
         List<UserAccount> userList= userDao.findAll();
-        for(UserAccount user:userList){
-            System.out.println(user);
-            System.out.println(user.getAccountList());
-
-
-        }
+//        for(UserAccount user:userList){
+//            System.out.println(user);
+//            System.out.println(user.getAccountList());
+//
+//        }
 
     }
 

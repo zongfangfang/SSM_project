@@ -17,4 +17,6 @@ public interface AccountDao{
      * @return
      */
     List<Account> findAllAccount();
+
+    Account findById(Integer id);
 }
