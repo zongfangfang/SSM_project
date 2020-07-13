@@ -20,7 +20,7 @@ public interface UserDao {
             @Result(property="username", column="username"),
             @Result(property="address", column="address"),
             @Result(property="sex", column="sex"),
-            @Result(property="birthday", column="birthday")
+            @Result(property="birthday", column="birthday"),
             @Result(property = "accountList", column = "id",many = @Many(select="com.myitem.dao.findAccountByUid",fetchType = FetchType.LAZY))
     })
     List<UserAccount> findAll();
